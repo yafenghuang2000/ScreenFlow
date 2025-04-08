@@ -1,29 +1,40 @@
-# Rsbuild project
+<!-- // import React from 'react';
+// import { Input, Layout, Menu, theme, Button } from 'antd';
+// import { Outlet } from 'react-router-dom';
+// import './index.scss';
 
-## Setup
+// const { Content, Sider } = Layout;
 
-Install the dependencies:
+// const LayoutComponent: React.FC = () => {
+//   const {
+//     token: { colorBgLayout },
+//   } = theme.useToken();
 
-```bash
-pnpm install
-```
+//   return (
+//     <div className='layout'>
+//       <Layout style={{ height: '100%', width: '100%' }}>
+//         <Sider trigger={null} collapsible collapsedWidth='0' theme='light'>
+//           <div className='layout-slider'>
+//             <div className='layout-slider-logo'>
+//               <img src='https://cdn.cnbj1.fds.api.mi-img.com/workbench/front/res/mi.svg' alt='' />
+//               <div className='layout-slider-logo-title'>售后管理系统</div>
+//             </div>
+//           </div>
+//           <div className='layout-search'>
+//             <Input />
+//           </div>
+//         </Sider>
+//         <Layout>
+//           <div className='layout-header'></div>
+//           <Content>
+//             <div className='layout-content' style={{ background: colorBgLayout }}>
+//               <Outlet />
+//             </div>
+//           </Content>
+//         </Layout>
+//       </Layout>
+//     </div>
+//   );
+// };
 
-## Get started
-
-Start the dev server:
-
-```bash
-pnpm dev
-```
-
-Build the app for production:
-
-```bash
-pnpm build
-```
-
-Preview the production build locally:
-
-```bash
-pnpm preview
-```
+// export default LayoutComponent; -->
