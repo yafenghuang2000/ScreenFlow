@@ -2,7 +2,7 @@ import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProConfigProvider, ProFormText } from '@ant-design/pro-components';
 import { theme } from 'antd';
-import { setLocalStorage } from '@/utils/StorageValue.ts';
+import { setCookie } from '@/utils/StorageValue.ts';
 import { useGoHome } from '@/hooks/routerHooks';
 import { login } from '@/services/homService';
 import './index.scss';
@@ -36,12 +36,23 @@ const Login: React.FC = () => {
   };
 
   const onFinish = async (values: { username: string; password: string }) => {
-    try {
-      const res = await login(values);
-      setLocalStorage('user', res.token);
+    const res = await login(values);
+
+    if (res) {
+      setCookie({
+        key: 'user',
+        value: res.token,
+        options: {
+          expires: 60 * 60 * 24 * 7,
+          maxAge: 60 * 60 * 24 * 3,
+          httpOnly: true,
+          sameSite: 'strict',
+          signed: true,
+          domains: ['localhost'], // 多个域名
+          path: '/',
+        },
+      });
       goHome();
-    } catch (error) {
-      console.log(error, 'error');
     }
   };
 

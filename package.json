@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rsbuild build",
     "check": "biome check --write",
-    "dev": "rsbuild dev --env-mode test",
+    "dev": "rsbuild dev",
+    "dev:test": "rsbuild dev --env-mode test",
     "format": "prettier --write .",
     "lint": "eslint .",
     "preview": "rsbuild preview"
