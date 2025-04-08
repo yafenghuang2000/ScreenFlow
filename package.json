@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@antv/g2": "^5.2.12",
+    "@antv/l7": "^2.22.5",
+    "@antv/l7-maps": "^2.22.5",
     "@uidotdev/usehooks": "^2.4.1",
     "ahooks": "^3.8.4",
     "axios": "^1.8.4",
