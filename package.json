@@ -23,6 +23,7 @@
     "@antv/s2-react": "^2.2.0",
     "@antv/s2-react-components": "^2.1.2",
     "@antv/x6": "^2.18.1",
+    "@commitlint/config-conventional": "^19.8.0",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.14.0",
     "@uidotdev/usehooks": "^2.4.1",
