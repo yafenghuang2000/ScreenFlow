@@ -1,6 +1,8 @@
-import { defineConfig } from '@rsbuild/core';
+import { defineConfig, loadEnv } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginSass } from '@rsbuild/plugin-sass';
+
+const env = loadEnv().rawPublicVars;
 
 export default defineConfig({
   plugins: [pluginReact(), pluginSass()],
@@ -10,6 +12,15 @@ export default defineConfig({
     open: true,
     compress: true,
     strictPort: true,
+    proxy: {
+      [`${env.PUBLIC_BAS_API}`]: {
+        target: `${env.PUBLIC_BAS_URL}`,
+        changeOrigin: true,
+        pathRewrite: {
+          [`^${env.PUBLIC_BAS_API}`]: '',
+        },
+      },
+    },
   },
   dev: {},
   performance: {
@@ -36,6 +47,9 @@ export default defineConfig({
       // 定义全局变量
       __APP_TITLE__: 'My Custom Title',
       __APP_DESCRIPTION__: 'This is a custom description.',
+      'process.env.PUBLIC_BAS_URL': JSON.stringify(process.env.PUBLIC_BAS_URL),
+      'process.env.PUBLIC_BAS_API': JSON.stringify(process.env.PUBLIC_BAS_API),
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     },
     entry: {
       index: './src/index.tsx',

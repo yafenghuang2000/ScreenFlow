@@ -85,6 +85,10 @@ const parse = <R>(res: AxiosResponse, params: { handleRaw: boolean }): R => {
 
 const instance = request.create({
   timeout: 5000,
+  baseURL: process.env.PUBLIC_BAS_API,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 // 请求拦截器
