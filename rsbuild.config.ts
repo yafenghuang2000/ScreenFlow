@@ -25,15 +25,13 @@ export default defineConfig({
   dev: {},
   performance: {
     chunkSplit: {
-      strategy: 'split-by-experience',
-      forceSplitting: {
-        react: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-        vendor: /[\\/]node_modules[\\/]/,
-      },
+      strategy: 'split-by-size',
+      forceSplitting: {},
       override: {
         chunks: 'all',
         minSize: 300 * 1024,
         maxSize: 800 * 1024,
+        maxAsyncSize: 500 * 1024,
       },
     },
   },
@@ -56,6 +54,7 @@ export default defineConfig({
     },
   },
   output: {
+    sourceMap: false,
     distPath: {
       root: './dist',
       html: './',
