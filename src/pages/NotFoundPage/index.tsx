@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NotFoundPage = (): React.JSX.Element => {
+const NotFoundPage = () => {
   const title = process.env.PUBLIC_BAS_URL;
   return <div>404 {title ?? '--'}</div>;
 };

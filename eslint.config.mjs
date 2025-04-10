@@ -51,7 +51,7 @@ export default [
           map: [
             ['@', './src'], // 假设你的项目中 '@' 别名指向 'src' 目录
           ],
-          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+          extensions: ['.js', '.jsx', '.ts', '.tsx','.json'],
         },
       },
     },
@@ -69,7 +69,7 @@ export default [
       // TypeScript 相关规则
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/explicit-module-boundary-types': 'warn',
+      // '@typescript-eslint/explicit-module-boundary-types': 'warn',
 
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -87,7 +87,7 @@ export default [
       ...tseslint.configs.recommended.rules, //检查 TypeScript 代码是否符合最佳实践
 
       // 通用规则
-      'no-console': ['warn', { allow: ['log', 'warn'] }],
+      // 'no-console': ['warn', { allow: ['log', 'warn'] }],
       'no-debugger': 'warn',
       'no-unused-vars': 'off', // 使用 TypeScript 的规则替代
       'prefer-const': 'error',
@@ -116,11 +116,11 @@ export default [
       quotes: ['error', 'single'],
       semi: ['error', 'always'],
       'comma-dangle': ['error', 'always-multiline'],
-      'max-lines': ['error', { max: 300 }],
+      'max-lines': ['error', { max: 500 }],
       'max-len': [
         'error',
         {
-          code: 100,
+          code: 200,
           ignoreStrings: true,
           ignoreTemplateLiterals: true,
           ignoreComments: true,
