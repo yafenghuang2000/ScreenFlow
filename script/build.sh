@@ -82,11 +82,11 @@ fi
 case $DEPLOY_CHOICE in
   1)
     echo "执行本地部署..."
-    ./run.sh "${IMAGE_NAME}"
+    ./script/run.sh "${IMAGE_NAME}"
     ;;
   2)
     echo "执行服务器部署..."
-    ./deploy.sh "${IMAGE_NAME}"
+    ./script/deploy.sh "${IMAGE_NAME}"
     ;;
   *)
     echo "无效的选择，退出脚本"

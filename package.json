@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "rsbuild build",
+    "build:test": "rsbuild build --env-mode test",
     "check": "biome check --write",
     "dev": "rsbuild dev",
     "dev:test": "rsbuild dev --env-mode test",
