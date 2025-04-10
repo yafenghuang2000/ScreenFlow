@@ -14,7 +14,8 @@
     "lint": "eslint .",
     "preview": "rsbuild preview",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "@ant-design/charts": "^2.2.7",
@@ -78,7 +79,13 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
+    "stylelint": "^16.18.0",
     "typescript": "^5.8.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm precommit"
+    }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
