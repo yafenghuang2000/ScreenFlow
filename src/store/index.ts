@@ -1,4 +1,10 @@
-import { legacy_createStore as legacyCreateStore, applyMiddleware } from 'redux';
+import {
+  legacy_createStore as legacyCreateStore,
+  applyMiddleware,
+  Action,
+  Reducer,
+  Store,
+} from 'redux';
 import { createTransform, persistReducer, persistStore, PersistConfig } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 import { thunk } from 'redux-thunk';
@@ -43,12 +49,18 @@ const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
   whitelist: [...whitelist],
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+interface ISPayloadAction<T = Record<string, unknown>> extends Action<string> {
+  payload: T;
+}
+
+const persistedReducer = persistReducer<ReturnType<typeof rootReducer>, ISPayloadAction>(
+  persistConfig,
+  rootReducer as unknown as Reducer<ReturnType<typeof rootReducer>, ISPayloadAction>,
+);
 
 // 创建 store，应用中间件
 const store = legacyCreateStore(persistedReducer, applyMiddleware(thunk));
 
-// 创建持久化存储
-const persist = persistStore(store);
+const persist = persistStore(store as Store<ReturnType<typeof rootReducer>, Action>);
 
 export { store, persist };

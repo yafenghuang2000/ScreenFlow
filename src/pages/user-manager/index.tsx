@@ -2,7 +2,9 @@ import React, { useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Flex, Table, Pagination } from 'antd';
 import type { TableProps } from 'antd';
+import { useSelector } from 'react-redux';
 import { useMount } from 'ahooks';
+import { RootState } from '@/reducer';
 import FormSearcher from './FormSearcher.tsx';
 import CreateForm from './createForm.tsx';
 import './index.scss';
@@ -15,6 +17,9 @@ const UserManager: React.FC = () => {
   const [tableLoading, setTableLoading] = useState(false);
   const [maxHeight, setMaxHeight] = useState(200);
   const [open, setOpen] = useState(false);
+
+  const userinfo = useSelector((state: RootState) => state.userinfo);
+  console.log(userinfo, 'userinfo');
 
   useMount(() => {
     setTableLoading(true);
