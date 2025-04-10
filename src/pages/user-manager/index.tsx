@@ -81,6 +81,13 @@ const UserManager: React.FC = () => {
     },
   ];
 
+  const handlePageChange = (page: number, pageSize: number) => {
+    setCurrent(page);
+    setPageSize(pageSize);
+    // You may also need to fetch new data based on the new page and pageSize
+    // For example: fetchData(page, pageSize);
+  };
+
   return (
     <div className='userManager'>
       <div className='userManager-header'>
@@ -126,6 +133,7 @@ const UserManager: React.FC = () => {
                 showSizeChanger
                 showQuickJumper
                 showTotal={(total) => `共 ${total}条`}
+                onChange={handlePageChange} // Add the onChange handler
               />
             </div>
           </div>
