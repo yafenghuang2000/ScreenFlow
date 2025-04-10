@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Drawer, Form, Input, Select, Row, Col, notification } from 'antd';
 import { useMount } from 'ahooks';
 import { register } from '@/services/homService';
-// import { IRegisterUser } from '@/services/homService/type';
+import { IRegisterUser } from '@/services/homService/type';
 import { filterNullAndUndefined } from '@/utils';
 import './createForm.scss';
 
@@ -26,7 +26,7 @@ const CreateForm: React.FC<ISCreateMenuProps> = (props) => {
     if (!values) return;
     try {
       setSaveLoading(true);
-      const params = filterNullAndUndefined(values) as any;
+      const params = filterNullAndUndefined(values) as IRegisterUser;
       const res = await register({ ...params, password: '123456' });
       if (res) {
         notification.open({

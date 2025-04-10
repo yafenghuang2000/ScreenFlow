@@ -3,8 +3,8 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Layout, theme, Input, Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import { Link, Outlet } from 'react-router-dom';
-import { IMenuItem, convertToMenuItems, routerList } from './data';
 import XMSIcon from '@/assets/xmsImg.svg';
+import { IMenuItem, convertToMenuItems, routerList } from './data';
 import './index.scss';
 
 const { Content, Sider } = Layout;
