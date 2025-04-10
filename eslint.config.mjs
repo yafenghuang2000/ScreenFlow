@@ -1,57 +1,60 @@
-import { fixupConfigRules } from '@eslint/compat';
-import js from '@eslint/js';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactJsx from 'eslint-plugin-react/configs/jsx-runtime.js';
-import react from 'eslint-plugin-react/configs/recommended.js';
-import globals from 'globals';
-import reactRefresh from 'eslint-plugin-react-refresh';
-import reactEslint from 'eslint-plugin-react';
-
+import tseslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import importPlugin from 'eslint-plugin-import';
 import prettier from 'eslint-plugin-prettier';
-import tseslint from '@typescript-eslint/eslint-plugin';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import prettierConfig from 'eslint-config-prettier';
+import globals from 'globals';
 
 export default [
-  { languageOptions: { globals: globals.browser, parser: tsParser } },
-  js.configs.recommended,
-  ...fixupConfigRules([
-    {
-      ...react,
-      files: ['**/*.{js,jsx,ts,tsx}'],
-      settings: {
-        react: { version: 'detect' },
-        'import/resolver': {
-          typescript: {
-            alwaysTryTypes: true,
-            project: './tsconfig.json',
-          },
-          alias: {
-            map: [
-              ['@', './src'], // 假设你的项目中 '@' 别名指向 'src' 目录
-            ],
-            extensions: ['.js', '.jsx', '.ts', '.tsx'],
-          },
+  {
+    ignores: ['dist', 'node_modules', '*.min.js', '*.d.ts', 'build', 'coverage'],
+  },
+  prettierConfig,
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 2020,
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
         },
       },
+      globals: {
+        ...globals.browser,
+        ...globals.es2020,
+        ...globals.node,
+      },
     },
-    reactJsx,
-  ]),
-  {
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      react: reactEslint,
+      react,
       import: importPlugin,
-      '@typescript-eslint': tseslint,
       prettier,
+      '@typescript-eslint': tseslint,
     },
-    rules: {
-      ...reactHooks.configs.recommended.rules,
+    settings: {
+      react: {
+        version: 'detect',
+      },
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: './tsconfig.json',
+        },
+        alias: {
+          map: [
+            ['@', './src'], // 假设你的项目中 '@' 别名指向 'src' 目录
+          ],
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        },
+      },
     },
-  },
-  { ignores: ['dist/'] },
-  {
     rules: {
       // React 相关规则
       'react-hooks/rules-of-hooks': 'error',
@@ -62,10 +65,12 @@ export default [
       'react/jsx-no-undef': 'error',
       'react/jsx-key': 'error',
       'react/prop-types': 'error',
+
       // TypeScript 相关规则
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/explicit-module-boundary-types': 'warn',
+
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -121,7 +126,6 @@ export default [
           ignoreComments: true,
         },
       ],
-
       // 命名规范
       camelcase: [
         'error',
@@ -130,6 +134,7 @@ export default [
           ignoreDestructuring: true,
         },
       ],
+
       '@typescript-eslint/naming-convention': [
         'error',
         {
