@@ -12,7 +12,7 @@ const initialState: ISUserInfoState<Record<string, never>> = {
 const userReducer = <T extends Record<string, unknown> = Record<string, never>>(
   state: ISUserInfoState<T> = initialState as ISUserInfoState<T>, // 使用类型断言
   action: { type: string; payload: T },
-): ISUserInfoState<T> => {
+) => {
   switch (action.type) {
     case userActionType.saveUserinfo:
       return { ...state, userInfo: action.payload }; // 更新 userInfo
